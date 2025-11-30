@@ -6,38 +6,54 @@ const ready = (fn) => {
     }
 };
 
-const listener = (id, params = {}) => {};
+function calculate_age(dob) {
+    var diff_ms = Date.now() - dob.getTime();
+    var age_dt = new Date(diff_ms);
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
 
 ready(() => {
-    document.getElementById("gender").addEventListener("input", () => {
-        console.log("hey");
+    elements = {
+        gender: document.getElementById("gender"),
+        first_name: document.getElementById("first-name"),
+        second_name: document.getElementById("second-name"),
+        last_name: document.getElementById("last-name"),
+        birthday: document.getElementById("birthday"),
+        education: document.getElementById("education"),
+        phone_num: document.getElementById("phone-num"),
+        email: document.getElementById("email"),
+        address: document.getElementById("address"),
+        marriage: document.getElementById("marriage"),
+        spouce: document.getElementById("spouce"),
+        occupational_status: document.getElementById("occupational-status"),
+        work_experiance: document.getElementById("work-experiance"),
+        work_field: document.getElementById("work-field"),
+    };
+
+    elements.phone_num.addEventListener("keypress", (event) => {
+        let symbol = String.fromCharCode(event.keyCode);
+        let regex = /^([\+\ \d-()])?$/;
+        if (!regex.test(symbol)) {
+            event.preventDefault();
+        }
     });
 
-    document.getElementById("first-name").addEventListener("input", () => {});
+    elements.work_experiance.addEventListener("keypress", (event) => {
+        let symbol = String.fromCharCode(event.keyCode);
+        let regex = /^(\d)?$/;
+        if (!regex.test(symbol)) {
+            event.preventDefault();
+        }
+    });
 
-    document.getElementById("second-name").addEventListener("input", () => {});
-    document.getElementById("last-name").addEventListener("input", () => {});
-    document.getElementById("Birthday").addEventListener("input", () => {});
-    document.getElementById("education").addEventListener("input", () => {});
-    document.getElementById("phone-num").addEventListener("input", () => {});
-    document.getElementById("email").addEventListener("input", () => {});
-    document.getElementById("address").addEventListener("input", () => {});
-    document.getElementById("marriage").addEventListener("input", () => {});
-    document.getElementById("spouce").addEventListener("input", () => {});
-    document
-        .getElementById("occupational-status")
-        .addEventListener("input", () => {});
-    document
-        .getElementById("work-experiance")
-        .addEventListener("input", () => {});
-    document.getElementById("work-field").addEventListener("input", () => {});
+    elements.birthday.addEventListener("input", (event) => {
+        let date = new Date(event.target.value);
+        if (calculate_age(date) < 15) {
+            document.getElementById("edu-block").style.display = "none";
+        } else {
+            document.getElementById("edu-block").style.display = "block";
+        }
+    });
 
-    // data = {
-    //     gender: ,
-    //     first_name: () => document.getElementById("first-name").value,
-    // };
-    // console.log(data);
-    // document.getElementById("submit").addEventListener("click", () => {
-    //     console.log(data.first_name());
-    // });
+    const validator = () => {};
 });

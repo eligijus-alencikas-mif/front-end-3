@@ -9,6 +9,7 @@
     </head>
     <body>
         <h1>Hello world!</h1>
+        <label for="gender">Lytis: </label>
         <select id="gender">
             <option value="male">Vyras</option>
             <option value="female">Moteris</option>
@@ -19,14 +20,17 @@
         <input type="text" id="second-name" />
         <label for="last-name">Pavardė: </label>
         <input type="text" id="last-name" />
-        <label for="Birthday">Gimimo data: </label>
-        <input type="date" name="Birthday" id="Birthday" />
-        <select id="education">
-            <option value="primary-ed">Pagrindinis</option>
-            <option value="secondary-ed">Vidurinis</option>
-            <option value="college-ed">Aukštasis-kolegijinis</option>
-            <option value="university-ed">Aukštasis-universitetinis</option>
-        </select>
+        <label for="birthday">Gimimo data: </label>
+        <input type="date" name="birthday" id="birthday" />
+        <div id="edu-block">
+            <label for="education">Išsilavinimas: </label>
+            <select id="education">
+                <option value="primary-ed">Pagrindinis</option>
+                <option value="secondary-ed">Vidurinis</option>
+                <option value="college-ed">Aukštasis-kolegijinis</option>
+                <option value="university-ed">Aukštasis-universitetinis</option>
+            </select>
+        </div>
         <label for="phone-num">Tel. numeris: </label>
         <input type="tel" name="phone-num" id="phone-num" />
         <label for="email">El. paštas: </label>
