@@ -13,7 +13,7 @@ function calculate_age(dob) {
 }
 
 ready(() => {
-    elements = {
+    let elements = {
         gender: document.getElementById("gender"),
         first_name: document.getElementById("first-name"),
         second_name: document.getElementById("second-name"),
@@ -29,6 +29,8 @@ ready(() => {
         work_experiance: document.getElementById("work-experiance"),
         work_field: document.getElementById("work-field"),
     };
+
+    let GLOBAL_age = 0;
 
     elements.phone_num.addEventListener("keypress", (event) => {
         let symbol = String.fromCharCode(event.keyCode);
@@ -47,13 +49,15 @@ ready(() => {
     });
 
     elements.birthday.addEventListener("input", (event) => {
-        let date = new Date(event.target.value);
-        if (calculate_age(date) < 15) {
-            document.getElementById("edu-block").style.display = "none";
-        } else {
-            document.getElementById("edu-block").style.display = "block";
-        }
+        GLOBAL_age = calculate_age(new Date(event.target.value));
+        update_element_visability();
     });
 
-    const validator = () => {};
+    const update_element_visability = () => {
+        for (let i = 0; i < 30; i++) {
+            document.querySelectorAll(".age-over-" + i).forEach((element) => {
+                element.style.display = GLOBAL_age > i ? "block" : "none";
+            });
+        }
+    };
 });
